@@ -15,14 +15,14 @@ import axios from "axios";
 
 export const getEvents = () => {
   return async (dispatch) => {
-    const { data } = await axios.get("http://localhost:3001/events/");
+    const { data } = await axios.get("/events/");
     return dispatch({ type: GET_EVENTS, payload: data });
   };
 };
 
 export const createEvent = (event) => {
   return async (dispatch) => {
-    const { data } = await axios.post("http://localhost:3001/events/", event);
+    const { data } = await axios.post("/events/", event);
     return dispatch({ type: CREATE_EVENT, payload: data });
   };
 };
@@ -31,7 +31,7 @@ export const fetchEvents = () => {
   return async (dispatch) => {
     dispatch({ type: FETCH_EVENT_REQUEST });
     try {
-      const { data } = await axios.get("http://localhost:3001/events");
+      const { data } = await axios.get("/events");
       dispatch({ type: FETCH_EVENT_SUCCESS, payload: data });
     } catch (error) {
       dispatch({
@@ -47,7 +47,7 @@ export const searchEvent = (name) => {
     try {
       dispatch({ type: SEARCH_EVENT_REQUEST });
       const response = await axios.get(
-        `http://localhost:3001/events?name=${name}`
+        `/events?name=${name}`
       );
       return dispatch({
         type: SEARCH_EVENT_SUCCESS,
