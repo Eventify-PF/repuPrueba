@@ -16,8 +16,8 @@ const EventPage = async({params}) => {
               <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{detalEvent.title}</h1>
               <p className="leading-relaxed">{detalEvent.description}</p>
               <div className="flex mt-6 pb-5 border-b-2 border-gray-200 mb-5 flex-col">
-                <h2 className='text-xl title-font font-bold text-gray-900 tracking-widest'>Location</h2>
-                <p className="mr-3 leading-relaxed mb-4">{detalEvent.location}</p>
+                <h2 className='text-xl title-font font-bold text-gray-900 tracking-widest'>place</h2>
+                <p className="mr-3 leading-relaxed mb-4">{detalEvent.place}</p>
                 <h2 className='text-xl title-font font-bold text-gray-950 tracking-widest'>Date</h2>
                 <span className="badge bg-gray-700 text-blue-100 h-10 rounded px-1 py-1 text-center text-xl font-bold cursor-pointer">{formatearFecha(detalEvent.date)}</span>
               </div>

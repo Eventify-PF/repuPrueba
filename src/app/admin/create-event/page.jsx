@@ -17,7 +17,7 @@ const EventPage = () => {
   const dispatch = useDispatch();
   const [event, setEvent] = useState({
     title: "",
-    location: "",
+    place: "",
     date: "",
     description: "",
     image: "",
@@ -45,7 +45,7 @@ const EventPage = () => {
       setMessage("You created a new event!");
       setEvent({
         title: "",
-        location: "",
+        place: "",
         date: "",
         description: "",
         image: "",
@@ -88,17 +88,17 @@ const EventPage = () => {
           <span className="text-red-500 text-xs italic">{errors.title}</span>
           <br />
           <label className="block text-gray-700 text-sm font-bold mb-2">
-            Location:
+            place:
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            name="location"
-            value={event.location}
-            placeholder="Enter a location..."
+            name="place"
+            value={event.place}
+            placeholder="Enter a place..."
             type="text"
             onChange={handleChange}
           />
-          <span className="text-red-500 text-xs italic">{errors.location}</span>
+          <span className="text-red-500 text-xs italic">{errors.place}</span>
           <br />
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Date:
