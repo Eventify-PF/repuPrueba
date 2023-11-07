@@ -1,0 +1,1 @@
+export const CREATE_TICKET = 'CREATE_TICKET';
