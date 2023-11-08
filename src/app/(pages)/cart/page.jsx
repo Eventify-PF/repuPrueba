@@ -17,8 +17,16 @@ const CartPage = () => {
     TotalCart += carts[item].quantity * carts[item].price;
     ListCart.push(carts[item]);
   });
-
-  if (carts.length === 0) return router.push("/event");
+ 
+  useEffect(() => {
+    // Verifica si el código se está ejecutando en el lado del cliente
+    if (typeof window !== "undefined") {
+      // Ejecuta la redirección solo en el lado del cliente
+      if (carts.length === 0) {
+        router.push("/event");
+      }
+    }
+  }, []);
   return (
     <>
       <h1 className="mb-10 text-center text-2xl font-bold">Tickets</h1>
