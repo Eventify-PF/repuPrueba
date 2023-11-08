@@ -17,7 +17,7 @@ const EditEventForm = ({ detailEvent }) => {
 
   useEffect(() => {
     dispatch(getAllEventTypes());
-  }, []);
+  }, [dispatch]);
 
   const [event, setEvent] = useState({
     id: detailEvent.id,
