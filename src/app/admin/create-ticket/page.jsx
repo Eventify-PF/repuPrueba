@@ -5,10 +5,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { getEvents } from "../../../redux/action/eventActions";
 import validateTicket from "../../../utils/validateTicket";
-import {createTicket} from "../../../redux/action/ticketActions";
+import { createTicket } from "../../../redux/action/ticketActions";
 
 const TicketPage = () => {
-  const allEvents = useSelector((state) => state.eventReducer.events);
+  const allEvents = useSelector((state) => state.eventReducer.allEvents);
   const dispatch = useDispatch();
 
   const [ticket, setTicket] = useState({
@@ -52,6 +52,7 @@ const TicketPage = () => {
   };
 
   const handleSubmit = (event) => {
+    console.log(event + "Error");
     event.preventDefault();
     try {
       dispatch(createTicket(ticket));
@@ -79,7 +80,7 @@ const TicketPage = () => {
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
       >
-         <h2 className="text-2xl mb-4">Add Tickets to your Event!</h2>
+        <h2 className="text-2xl mb-4">Add Tickets to your Event!</h2>
 
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
