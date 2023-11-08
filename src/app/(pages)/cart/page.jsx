@@ -5,7 +5,10 @@ import {
   IncreaseQuantity,
 } from "@/redux/action/cartAction";
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+
+
 const CartPage = () => {
   const router = useRouter();
   const dispatch = useDispatch();
