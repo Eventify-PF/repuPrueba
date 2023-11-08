@@ -1,6 +1,6 @@
 "use client";
 
-const { updateTicket } = require("@/redux/action/ticketActions");
+import { updateTicket } from "@/redux/action/ticketActions";
 
 import { useState } from "react";
 import { useDispatch } from "react-redux";

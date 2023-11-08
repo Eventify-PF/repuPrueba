@@ -5,11 +5,17 @@ import {
   SEARCH_EVENT_REQUEST,
   SEARCH_EVENT_SUCCESS,
   SEARCH_EVENT_FAILED,
-  FILTER_EVENTTYPE,
-  FILTER_EVENT_DATE,
   CREATE_EVENT,
   GET_EVENTS,
+  GET_ALL_EVENTS,
   SET_CURRENT_PAGE,
+  UPDATE_EVENT,
+  FILTER_TYPE,
+  FILTER_TYPE_FAILURE,
+  FILTER_DATE,
+  FILTER_DATE_FAILURE,
+  FILTER_EVENTS,
+  FILTER_EVENTS_FAILURE
 } from "../action-type/eventConstans";
 import axios from "axios";
 
@@ -24,6 +30,13 @@ export const createEvent = (event) => {
   return async (dispatch) => {
     const { data } = await axios.post("/events/", event);
     return dispatch({ type: CREATE_EVENT, payload: data });
+  };
+};
+
+export const updateEvent = (event) => {
+  return async (dispatch) => {
+    const { data } = await axios.put("/events/", event);
+    return dispatch({ type: UPDATE_EVENT, payload: data });
   };
 };
 
@@ -42,13 +55,18 @@ export const fetchEvents = () => {
   };
 };
 
+export const getAllEvents = () => {
+  return async (dispatch) => {
+    const { data } = await axios.get("/events/all");
+    dispatch({ type: GET_ALL_EVENTS, payload: data });
+  };
+};
+
 export const searchEvent = (name) => {
   return async (dispatch) => {
     try {
       dispatch({ type: SEARCH_EVENT_REQUEST });
-      const response = await axios.get(
-        `/events?name=${name}`
-      );
+      const response = await axios.get(`/events?name=${name}`);
       return dispatch({
         type: SEARCH_EVENT_SUCCESS,
         payload: response.data,
@@ -62,19 +80,39 @@ export const searchEvent = (name) => {
   };
 };
 
-export const filterEventType = (name) => {
-  return {
-    type: FILTER_EVENTTYPE,
-    payload: name,
+export const filterEventsByType = (eventType) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`/events?eventType=${eventType}`);
+      dispatch({ type: FILTER_TYPE, payload: response.data });
+    } catch (error) {
+      dispatch({ type: FILTER_TYPE_FAILURE, payload: error.message });
+    }
   };
 };
 
-export const filterEventDate = (name) => {
-  return {
-    type: FILTER_EVENT_DATE,
-    payload: name,
+export const filterEventsByDate = (date) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`/events?date=${date}`);
+      dispatch({ type: FILTER_DATE, payload: response.data });
+    } catch (error) {
+      dispatch({ type: FILTER_DATE_FAILURE, payload: error.message });
+    }
   };
 };
+
+// export const filterEventsByTypeAndDate = (eventType, date) => {
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.get(`/events?eventType=${eventType}&date=${date}`);
+//       dispatch({ type: FILTER_EVENTS, payload: response.data });
+//     } catch (error) {
+//       dispatch({ type: FILTER_EVENTS_FAILURE, payload: error.message });
+//     }
+//   };
+// };
+
 
 export const setCurrentPage = (page) => {
   return {
