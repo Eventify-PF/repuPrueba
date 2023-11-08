@@ -2,7 +2,7 @@
 
 import { updateEvent } from "@/redux/action/eventActions";
 import { getAllEventTypes } from "@/redux/action/eventTypeActions";
-import validateForm from "@/utils/validateForm";
+import {validateForm} from "@/utils/validateForm";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -29,9 +29,7 @@ const EditEventForm = ({ detailEvent }) => {
     eventType: detailEvent.eventType,
   });
 
-  console.log("ANTES: ", detailEvent.eventType);
-  console.log("DESPUES: ", event);
-
+ 
   const handleChange = (e) => {
     setEvent({ ...event, [e.target.name]: e.target.value });
     setErrors(validateForm({ ...event, [e.target.name]: e.target.value }));
